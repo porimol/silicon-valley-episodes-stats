@@ -1,0 +1,397 @@
+---
+title: "RR: Assignment 8"
+author: "Porimol Chandro"
+date: "May 15, 2025"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "")
+```
+
+# TV Series: Silicon Valley
+
+## Episodes Statistics
+
+![Logo source: <https://www.tvinsider.com/show/silicon-valley/>](logo.jpg)
+
+***Silicon Valley*** is an American comedy series that follows a socially awkward programmer, `Richard Hendricks`, and his eclectic team as they try to build and scale their innovative compression startup, **Pied Piper**, in the ruthless world of tech. The show satirizes startup culture, venture capital absurdities, and the often cutthroat dynamics of [Silicon Valley](https://en.wikipedia.org/wiki/List_of_Silicon_Valley_episodes).
+
+## Series Overview
+
+```{r echo=FALSE}
+series_overview <- data.frame(
+  Season = 1:6,
+  Episodes = c(8, 10, 10, 10, 8, 7),
+  `First released` = c(
+    "April 6, 2014", "April 12, 2015", "April 24, 2016",
+    "April 23, 2017", "March 25, 2018", "October 27, 2019"
+  ),
+  `Last released` = c(
+    "June 1, 2014", "June 14, 2015", "June 26, 2016",
+    "June 25, 2017", "May 13, 2018", "December 8, 2019"
+  ),
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+# head(series_overview)
+knitr::kable(head(series_overview), caption="Series overview")
+```
+
+## Season 1 (2014)
+
+```{r echo=FALSE}
+# Create Season 1 (2014) episode overview as a base R data.frame
+season1 <- data.frame(
+  `No. overall`            = 1:8,
+  `No. in season`          = 1:8,
+  Title                     = c(
+    "Minimum Viable Product",
+    "The Cap Table",
+    "Articles of Incorporation",
+    "Fiduciary Duties",
+    "Signaling Risk",
+    "Third Party Insourcing",
+    "Proof of Concept",
+    "Optimal Tip-to-Tip Efficiency"
+  ),
+  `Directed by`            = c(
+    "Mike Judge", "Mike Judge", "Tricia Brock", "Maggie Carey",
+    "Alec Berg",   "Alec Berg",   "Mike Judge",   "Mike Judge"
+  ),
+  `Written by`             = c(
+    "Mike Judge & John Altschuler & Dave Krinsky",
+    "Carson Mell",
+    "Matteo Borghese & Rob Turbovsky",
+    "Ron Weiner",
+    "Jessica Gao",
+    "Dan O'Keefe",
+    "Clay Tarver",
+    "Alec Berg"
+  ),
+  `Original release date`  = c(
+    "April 6, 2014",  "April 13, 2014", "April 20, 2014", "April 27, 2014",
+    "May 4, 2014",    "May 11, 2014",  "May 18, 2014",  "June 1, 2014"
+  ),
+  `U.S. viewers (millions)` = c(
+    1.98, 1.69, 1.62, 1.55, 1.82, 1.69, 1.68, 1.74
+  ),
+  stringsAsFactors = FALSE,
+  check.names      = FALSE
+)
+
+knitr::kable(head(season1), caption="An overview of season 1")
+```
+
+
+## Season 2 (2015)
+```{r echo=FALSE}
+season2 <- data.frame(
+  `No. overall`            = 9:18,
+  `No. in season`          = 1:10,
+  Title                     = c(
+    "Sand Hill Shuffle",
+    "Runaway Devaluation",
+    "Bad Money",
+    "The Lady",
+    "Server Space",
+    "Homicide",
+    "Adult Content",
+    "White Hat/Black Hat",
+    "Binding Arbitration",
+    "Two Days of the Condor"
+  ),
+  `Directed by`            = c(
+    "Mike Judge", "Mike Judge", "Alec Berg", "Alec Berg",
+    "Mike Judge", "Mike Judge", "Alec Berg", "Alec Berg",
+    "Mike Judge", "Alec Berg"
+  ),
+  `Written by`             = c(
+    "Clay Tarver",
+    "Ron Weiner",
+    "Alec Berg",
+    "Carson Mell",
+    "Sonny Lee",
+    "Carrie Kemper",
+    "Amy Aniobi",
+    "Daniel Lyons",
+    "Dan O'Keefe",
+    "Alec Berg"
+  ),
+  `Original release date`  = c(
+    "April 12, 2015",
+    "April 19, 2015",
+    "April 26, 2015",
+    "May 3, 2015",
+    "May 10, 2015",
+    "May 17, 2015",
+    "May 24, 2015",
+    "May 31, 2015",
+    "June 7, 2015",
+    "June 14, 2015"
+  ),
+  `U.S. viewers (millions)` = c(
+    2.13, 1.73, 1.94, 1.75, 1.53, 1.54, 1.60, 1.78, 1.87, 2.11
+  ),
+  stringsAsFactors = FALSE,
+  check.names      = FALSE
+)
+knitr::kable(head(season2), caption="An overview of season 2")
+```
+
+## Season 3 (2016)
+
+```{r echo=FALSE}
+season3 <- data.frame(
+  `No. overall`            = 19:28,
+  `No. in season`          = 1:10,
+  Title                     = c(
+    "Founder Friendly",
+    "Two in the Box",
+    "Meinertzhagen's Haversack",
+    "Maleant Data Systems Solutions",
+    "The Empty Chair",
+    "Bachmanity Insanity",
+    "To Build a Better Beta",
+    "Bachman's Earnings Over-Ride",
+    "Daily Active Users",
+    "The Uptick"
+  ),
+  `Directed by`            = c(
+    "Mike Judge", "Mike Judge", "Charlie McDowell", "Charlie McDowell",
+    "Eric Appel", "Eric Appel", "Jamie Babbit", "Jamie Babbit",
+    "Alec Berg",  "Alec Berg"
+  ),
+  `Written by`             = c(
+    "Dan O'Keefe",
+    "Ron Weiner",
+    "Adam Countee",
+    "Donick Cary",
+    "Megan Amram",
+    "Carson Mell",
+    "John Levenstein",
+    "Carrie Kemper",
+    "Clay Tarver",
+    "Alec Berg"
+  ),
+  `Original release date`  = c(
+    "April 24, 2016",
+    "May 1, 2016",
+    "May 8, 2016",
+    "May 15, 2016",
+    "May 22, 2016",
+    "May 29, 2016",
+    "June 5, 2016",
+    "June 12, 2016",
+    "June 19, 2016",
+    "June 26, 2016"
+  ),
+  `U.S. viewers (millions)` = c(
+    1.86, 1.72, 1.69, 1.89, 1.71, 1.62, 1.70, 1.64, 1.63, 2.04
+  ),
+  stringsAsFactors = FALSE,
+  check.names      = FALSE
+)
+
+knitr::kable(head(season3), caption="An overview of season 3")
+```
+
+## Season 4 (2017)
+```{r echo=FALSE}
+season4 <- data.frame(
+  `No. overall`            = 29:38,
+  `No. in season`          = 1:10,
+  Title                     = c(
+    "Success Failure",
+    "Terms of Service",
+    "Intellectual Property",
+    "Teambuilding Exercise",
+    "The Blood Boy",
+    "Customer Service",
+    "The Patent Troll",
+    "The Keenan Vortex",
+    "Hooli-Con",
+    "Server Error"
+  ),
+  `Directed by`            = c(
+    "Mike Judge", "Mike Judge", "Jamie Babbit", "Jamie Babbit",
+    "Tim Roche",  "Clay Tarver", "Jamie Babbit", "Jamie Babbit",
+    "Mike Judge", "Mike Judge"
+  ),
+  `Written by`             = c(
+    "Alec Berg",
+    "Clay Tarver",
+    "Carrie Kemper",
+    "Meghan Pleticha",
+    "Adam Countee",
+    "Graham Wagner & Shawn Boxe",
+    "Andrew Law",
+    "Graham Wagner & Rachele Lynn",
+    "Chris Provenzano",
+    "Dan O'Keefe"
+  ),
+  `Original release date`  = c(
+    "April 23, 2017",
+    "April 30, 2017",
+    "May 7, 2017",
+    "May 14, 2017",
+    "May 21, 2017",
+    "May 28, 2017",
+    "June 4, 2017",
+    "June 11, 2017",
+    "June 18, 2017",
+    "June 25, 2017"
+  ),
+  `U.S. viewers (millions)` = c(
+    0.867, 0.762, 0.774, 0.859, 0.844,
+    0.728, 0.862, 0.798, 0.840, 0.790
+  ),
+  stringsAsFactors = FALSE,
+  check.names      = FALSE
+)
+
+knitr::kable(head(season4), caption="An overview of season 4")
+```
+
+
+## Season 5 (2018)
+```{r echo=FALSE}
+season5 <- data.frame(
+  `No. overall`            = 39:46,
+  `No. in season`          = 1:8,
+  Title                     = c(
+    "Grow Fast or Die Slow",
+    "Reorientation",
+    "Chief Operating Officer",
+    "Tech Evangelist",
+    "Facial Recognition",
+    "Artificial Emotional Intelligence",
+    "Initial Coin Offering",
+    "Fifty-One Percent"
+  ),
+  `Directed by`            = c(
+    "Mike Judge",
+    "Mike Judge",
+    "Jamie Babbit",
+    "Jamie Babbit",
+    "Gillian Robespierre",
+    "Matt Ross",
+    "Mike Judge",
+    "Alec Berg"
+  ),
+  `Written by`             = c(
+    "Ron Weiner",
+    "Carson Mell",
+    "Carrie Kemper",
+    "Josh Lieb",
+    "Graham Wagner",
+    "Anthony King",
+    "Clay Tarver",
+    "Alec Berg"
+  ),
+  `Original release date`  = c(
+    "March 25, 2018",
+    "April 1, 2018",
+    "April 8, 2018",
+    "April 15, 2018",
+    "April 22, 2018",
+    "April 29, 2018",
+    "May 6, 2018",
+    "May 13, 2018"
+  ),
+  `U.S. viewers (millions)` = c(
+    0.698,
+    0.592,
+    0.624,
+    0.610,
+    0.858,
+    1.02,
+    0.853,
+    0.707
+  ),
+  stringsAsFactors = FALSE,
+  check.names      = FALSE
+)
+
+knitr::kable(head(season5), caption="An overview of season 5")
+```
+
+
+## Season 6 (2019)
+```{r echo=FALSE}
+season6 <- data.frame(
+  `No. overall`            = 47:53,
+  `No. in season`          = 1:7,
+  Title                     = c(
+    "Artificial Lack of Intelligence",
+    "Blood Money",
+    "Hooli Smokes!",
+    "Maximizing Alphaness",
+    "Tethics",
+    "RussFest",
+    "Exit Event"
+  ),
+  `Directed by`            = c(
+    "Mike Judge",
+    "Mike Judge",
+    "Liza Johnson",
+    "Liza Johnson",
+    "Pete Chatmon",
+    "Matt Ross",
+    "Alec Berg"
+  ),
+  `Written by`             = c(
+    "Ron Weiner",
+    "Carson Mell",
+    "Sarah Walker",
+    "Daisy Gardner",
+    "Lew Morton",
+    "Carrie Kemper",
+    "Alec Berg"
+  ),
+  `Original release date`  = c(
+    "October 27, 2019",
+    "November 3, 2019",
+    "November 10, 2019",
+    "November 17, 2019",
+    "November 24, 2019",
+    "December 1, 2019",
+    "December 8, 2019"
+  ),
+  `U.S. viewers (millions)` = c(
+    0.448,
+    0.383,
+    0.459,
+    0.452,
+    0.311,
+    0.414,
+    0.454
+  ),
+  stringsAsFactors = FALSE,
+  check.names      = FALSE
+)
+
+knitr::kable(head(season6), caption="An overview of season 6")
+```
+
+
+## All Seasons Combined
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+# combine all six season data.frames into one
+all_seasons <- do.call(rbind, list(
+  season1, season2, season3,
+  season4, season5, season6
+))
+
+# show the full combined overview
+knitr::kable(
+  all_seasons,
+  caption = "Silicon Valley: All Seasons Episode Overview",
+  align = "c"
+)
+```
