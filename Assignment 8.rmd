@@ -6,6 +6,7 @@ output:
   pdf_document: default
   html_document: default
   word_document: default
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -23,6 +24,8 @@ knitr::opts_chunk$set(comment = "")
 \newpage
 
 ## Series Overview
+
+**Silicon Valley** TV series ran for six seasons between April 6, 2014 and December 8, 2019, producing a total of 53 episodes. Seasons 1 and 5 each had 8 episodes, seasons 2–4 had 10 episodes apiece, and the final season comprised 7 episodes.
 
 ```{r echo=FALSE}
 series_overview <- data.frame(
@@ -407,6 +410,8 @@ knitr::kable(
 )
 ```
 
+\newpage
+
 ## Viewership Statistics
 ### Season-wise Summary Statistics
 
@@ -439,6 +444,8 @@ knitr::kable(
 )
 ```
 
+**Silicon Valley**'s averaged highest U.S. viewership in Season 2 (1.80 M per episode, peaking at 2.13 M) before a gradual decline to just 0.42 M in Season 6. Seasons 1–3 each viewership totals (13.77–17.98 M viewers) over 8–10 episodes, while Seasons 4–6 saw both fewer viewers per episode (0.75–0.81 M) and smaller cumulative audiences (2.92–8.12 M). The data show an initial growth in season 1 through Season 2, modest erosion in Season 3, then a steep drop-off in Seasons 4–6.
+
 ## Viewership Over Time
 
 ```{r viewership-plot, echo=FALSE, warning=FALSE, message=FALSE}
@@ -462,6 +469,9 @@ ggplot(all_seasons, aes(x = `Original release date`,
   ) +
   theme_minimal()
 ```
+
+Viewership climbed to a peak of just over 2 million per episode around Seasons 1–3 (2014–16) before falling below 1 million in Season 4 and tapering off further to under 0.5 million by Season 6.
+
 
 ## Average U.S. Viewership by Season
 
@@ -494,6 +504,8 @@ ggplot(season_stats, aes(x = factor(Season), y = avg_viewers)) +
   theme_minimal()
 ```
 
+Average viewership peaks around 1.8 M in Season 2 with the widest episode to episode swing and then steadily declines to just over 0.4 M in Season 6, with Season 4–6 all averaging under 1 M viewers.
+
 
 ## Silicon Valley : U.S. viewers per episode (millions) by Season
 
@@ -524,5 +536,6 @@ ggplot(all_seasons, aes(
     panel.grid.minor   = element_blank(),
     legend.position    = "none"
   )
-
 ```
+
+Across six seasons, episode viewership held strong at roughly 1.5–2 million in Seasons 1–3, dipped into the 0.6–1 million range in Seasons 4–5, and slid below half a million by Season 6.
