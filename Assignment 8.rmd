@@ -20,6 +20,8 @@ knitr::opts_chunk$set(comment = "")
 
 ***Silicon Valley*** is an American comedy series that follows a socially awkward programmer, `Richard Hendricks`, and his eclectic team as they try to build and scale their innovative compression startup, **Pied Piper**, in the ruthless world of tech. The show satirizes startup culture, venture capital absurdities, and the often cutthroat dynamics of [Silicon Valley](https://en.wikipedia.org/wiki/List_of_Silicon_Valley_episodes).
 
+\newpage
+
 ## Series Overview
 
 ```{r echo=FALSE}
@@ -42,7 +44,7 @@ series_overview <- data.frame(
 knitr::kable(head(series_overview), caption="Series overview")
 ```
 
-## Season 1 (2014)
+<!-- ## Season 1 (2014) -->
 
 ```{r echo=FALSE}
 # Create Season 1 (2014) episode overview as a base R data.frame
@@ -85,11 +87,11 @@ season1 <- data.frame(
   check.names      = FALSE
 )
 
-knitr::kable(head(season1), caption="An overview of season 1")
+# knitr::kable(head(season1), caption="An overview of season 1")
 ```
 
 
-## Season 2 (2015)
+<!-- ## Season 2 (2015) -->
 ```{r echo=FALSE}
 season2 <- data.frame(
   Season                   = 2,
@@ -142,10 +144,10 @@ season2 <- data.frame(
   stringsAsFactors = FALSE,
   check.names      = FALSE
 )
-knitr::kable(head(season2), caption="An overview of season 2")
+# knitr::kable(head(season2), caption="An overview of season 2")
 ```
 
-## Season 3 (2016)
+<!-- ## Season 3 (2016) -->
 
 ```{r echo=FALSE}
 season3 <- data.frame(
@@ -200,10 +202,10 @@ season3 <- data.frame(
   check.names      = FALSE
 )
 
-knitr::kable(head(season3), caption="An overview of season 3")
+# knitr::kable(head(season3), caption="An overview of season 3")
 ```
 
-## Season 4 (2017)
+<!-- ## Season 4 (2017) -->
 ```{r echo=FALSE}
 season4 <- data.frame(
   Season                   = 4,
@@ -258,11 +260,11 @@ season4 <- data.frame(
   check.names      = FALSE
 )
 
-knitr::kable(head(season4), caption="An overview of season 4")
+# knitr::kable(head(season4), caption="An overview of season 4")
 ```
 
 
-## Season 5 (2018)
+<!-- ## Season 5 (2018) -->
 ```{r echo=FALSE}
 season5 <- data.frame(
   Season                   = 5,
@@ -322,11 +324,11 @@ season5 <- data.frame(
   check.names      = FALSE
 )
 
-knitr::kable(head(season5), caption="An overview of season 5")
+# knitr::kable(head(season5), caption="An overview of season 5")
 ```
 
 
-## Season 6 (2019)
+<!-- ## Season 6 (2019) -->
 ```{r echo=FALSE}
 season6 <- data.frame(
   Season                   = 6,
@@ -381,7 +383,7 @@ season6 <- data.frame(
   check.names      = FALSE
 )
 
-knitr::kable(head(season6), caption="An overview of season 6")
+# knitr::kable(head(season6), caption="An overview of season 6")
 ```
 
 
@@ -405,6 +407,38 @@ knitr::kable(
 )
 ```
 
+## Viewership Statistics
+### Season-wise Summary Statistics
+
+```{r season-summary, echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+
+# make sure dates are Date class
+all_seasons <- all_seasons %>%
+  mutate(`Original release date` = as.Date(
+    `Original release date`, "%B %d, %Y"
+  ))
+
+season_stats <- all_seasons %>%
+  group_by(Season) %>%
+  summarise(
+    Episodes       = n(),
+    `First release`= format(min(`Original release date`), "%b %d, %Y"),
+    `Last release` = format(max(`Original release date`), "%b %d, %Y"),
+    `Avg viewers`  = mean(`U.S. viewers (millions)`),
+    `Min viewers`  = min(`U.S. viewers (millions)`),
+    `Max viewers`  = max(`U.S. viewers (millions)`),
+    `Total viewers`= sum(`U.S. viewers (millions)`)
+  )
+
+knitr::kable(
+  season_stats,
+  caption = "Basic statistics for each Silicon Valley season",
+  digits  = 2,
+  align   = "c"
+)
+```
+
 ## Viewership Over Time
 
 ```{r viewership-plot, echo=FALSE, warning=FALSE, message=FALSE}
@@ -424,6 +458,37 @@ ggplot(all_seasons, aes(x = `Original release date`,
   labs(
     title = "Silicon Valley: U.S. Viewership Over Time",
     x     = "Original Release Date",
+    y     = "Viewers (millions)"
+  ) +
+  theme_minimal()
+```
+
+## Average U.S. Viewership by Season
+
+```{r season-summary-plot, echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(ggplot2)
+
+# Recompute season-wise stats with clean names
+season_stats <- all_seasons %>%
+  mutate(`Original release date` = as.Date(
+    `Original release date`, "%B %d, %Y"
+  )) %>%
+  group_by(Season) %>%
+  summarise(
+    Episodes     = n(),
+    avg_viewers  = mean(`U.S. viewers (millions)`),
+    min_viewers  = min(`U.S. viewers (millions)`),
+    max_viewers  = max(`U.S. viewers (millions)`)
+  )
+
+# Plot
+ggplot(season_stats, aes(x = factor(Season), y = avg_viewers)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = min_viewers, ymax = max_viewers), width = 0.2) +
+  labs(
+    title = "Average U.S. Viewership by Season",
+    x     = "Season",
     y     = "Viewers (millions)"
   ) +
   theme_minimal()
