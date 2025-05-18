@@ -1,0 +1,12 @@
+---
+title: "Assignment 8 - Quarto"
+author: "Porimol Chandro"
+date: "May 15, 2025"
+output:
+  quarto::quarto_html: default
+  quarto::quarto_pdf: default
+  quarto::quarto_word: default
+---
+
+# Silicon Valley episodes Statistics
+
